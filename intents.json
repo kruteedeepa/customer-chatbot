@@ -1,0 +1,49 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["hi", "hello", "hey", "good morning", "good evening"],
+      "responses": ["Hello! How can I help you today?", "Hi there! What can I assist you with?"]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["bye", "goodbye", "see you later", "exit"],
+      "responses": ["Goodbye! Have a great day!", "Thanks for visiting. See you again!"]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["thanks", "thank you", "thx", "tysm"],
+      "responses": ["You're welcome!", "Happy to help!", "Anytime!"]
+    },
+    {
+      "tag": "order_status",
+      "patterns": ["Where is my order?", "Track my order", "Order status", "Order delivery status", "Is my order shipped?", "Where's my package?"],
+      "responses": ["Sure! Please provide your order ID to check the status."]
+    },
+    {
+      "tag": "location",
+      "patterns": ["Where are you located?", "What's your address?", "Company location", "Where is your store?", "office address"],
+      "responses": ["We’re located at Bhubaneswar, Odisha. You can find us on Google Maps!"]
+    },
+    {
+      "tag": "return_policy",
+      "patterns": ["How do I return a product?", "Return item", "What's your return policy?", "Can I return something?"],
+      "responses": ["We offer easy 7-day returns. Please visit the returns page or share your order ID to begin."]
+    },
+    {
+      "tag": "payment_issue",
+      "patterns": ["Payment failed", "Payment error", "Why was my payment declined?", "Problem with transaction"],
+      "responses": ["Sorry about that! Sometimes payments fail due to bank issues. Please try again or use a different method."]
+    },
+    {
+      "tag": "human_support",
+      "patterns": ["Talk to a person", "Connect me to support", "I want to speak to an agent", "Can I talk to someone?"],
+      "responses": ["Sure, you can call our support at 1800-123-456 or email us at support@example.com."]
+    },
+    {
+      "tag": "services",
+      "patterns": ["What services do you offer?", "Tell me about your services", "Help options", "What can you do?"],
+      "responses": ["We provide product support, order tracking, return processing, and live chat with agents."]
+    }
+  ]
+}

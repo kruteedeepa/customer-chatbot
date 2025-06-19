@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChatbotAI</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="chat-container">
+    <h2>🤖 ChatbotAI</h2>
+    <div class="chat-box" id="chat-box">
+      <div class="message bot">
+        <div class="profile bot-profile">🤖</div>
+        <div class="text">Hello! How can I help you today?</div>
+      </div>
+    </div>
+    <div class="input-area">
+      <input type="text" id="user-input" placeholder="Type your message here..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    function createMessageElement(message, sender = "user") {
+      const msg = document.createElement("div");
+      msg.className = `message ${sender}`;
+      msg.innerHTML = `
+        <div class="profile ${sender}-profile">${sender === "user" ? "🧑" : "🤖"}</div>
+        <div class="text">${message}</div>
+      `;
+      return msg;
+    }
+
+    function createTypingElement() {
+      const typing = document.createElement("div");
+      typing.className = "message bot typing";
+      typing.innerHTML = `
+        <div class="profile bot-profile">🤖</div>
+        <div class="text"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      `;
+      return typing;
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById("user-input");
+      const chatBox = document.getElementById("chat-box");
+      const message = input.value.trim();
+      if (!message) return;
+
+      // User message
+      chatBox.appendChild(createMessageElement(message, "user"));
+      input.value = "";
+
+      // Typing animation
+      const typing = createTypingElement();
+      chatBox.appendChild(typing);
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Bot response
+      const response = await fetch("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message }),
+      });
+      const data = await response.json();
+
+      // Remove typing animation and add bot response
+      chatBox.removeChild(typing);
+      chatBox.appendChild(createMessageElement(data.response, "bot"));
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</body>
+</html>
